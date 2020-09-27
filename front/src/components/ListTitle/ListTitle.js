@@ -5,26 +5,21 @@ import ListDropDown from '../ListDropDown/ListDropDown'
 
 const ListTitle = () => {
     const [listTitles, setListTitles] = useState([])
-    const [inputListTitle, setInputListTitle] = useState('')
+    const [inputListTitle, setInputListTitle] = useState("")
     const [inputListItem, setInputListItem] = useState('')
-    const [customListData, setCustomListData] = useState({
-        name: '',
-        items: [{
-            name: ''
-        }]
-    })
+    const [customListData, setCustomListData] = useState()
 
     useEffect(()=>{
         const customList = async()=>{
-            const {selectedList} = await getTodos();
-            setListTitles(selectedList)
+            const data = await getTodos();
+            setListTitles(data)
         }
         customList()
     }, [])
 
     const changeHandler = (event)=>{
-        const item = event.target.value;
-        setInputListTitle(item)
+        // const item = event.target.value;
+        setInputListTitle(event.target.value);
     }
 
     const addItemHandler = (event) => {
@@ -36,11 +31,14 @@ const ListTitle = () => {
         setCustomListData({
             name: inputListTitle,
             items: [{
-                name: ''
+                name: ""
             }]
         })
     }
 
+    // const addItem = () => {
+    //     listTitles.push(customListData)
+    // }
     const addListItemHandler = ()=> {
         console.log('')
     }
@@ -48,12 +46,12 @@ const ListTitle = () => {
     return (
        <div>
             <label htmlFor="listname">Title</label>
-            <input type='text' id="listname" value={customListData.name} onChange={changeHandler} name="listname" placeholder="Add New Item" />
-            <button onClick={addListNameHandler}>Add Custom List Name</button>
+            <input type='text' id="listname" onChange={changeHandler} name="listname" placeholder="Add New Item" />
+            <button onClick={addListNameHandler}>Add Category Name</button>
 
             <ListDropDown listTitles={listTitles} />
             <label htmlFor='todoItem'>Add Item</label>
-            <input type='text' id="todoItem" value={customListData.items.name} onChange={addItemHandler} name="todoItem" placeholder="Add New Item" /> 
+            <input type='text' id="todoItem" onChange={addItemHandler} name="todoItem" placeholder="Add New Item" /> 
             <button onClick={addListItemHandler}>Add List Item</button>
 
         </div>

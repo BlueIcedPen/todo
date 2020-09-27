@@ -9,20 +9,20 @@ const ListDropDown = ({listTitles, history})=>{
     const [titleInfo, setTitleInfo] = useState([])
 
 
-    const optionSelect = listTitles.map((item)=>{
-        return <option key={item._id} value={item.name}>{item.name}</option>
+    const optionSelect = listTitles.map((item, key)=>{
+        return <option key={key} value={item.name}>{item.name}</option>
     });
 
     const listChangeHandler = async (event)=>{
-        history.push(`/${event.target.value}`)
+        // history.push(`/${event.target.value}`)
         const listInputTitle = event.target.value
-        const {selectedList} = await getTodos()
-        const index = selectedList.findIndex((x=>x.name === listInputTitle))
-        const titleInfo = selectedList[index]
+        const data = await getTodos();
+        const index = data.findIndex((x=>x.name === listInputTitle))
+        const titleInfo = data[index]
         setTitleInfo(titleInfo['items'])
         // setSelectedTitle(listInputTitle)
         console.log(titleInfo['items'])
-        console.log(selectedList)
+        // console.log(titleInfo)
     }
 
 

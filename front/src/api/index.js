@@ -9,20 +9,35 @@ const url = 'http://localhost:5000';
 // export const getTodos = async ()=> await api.get('/')
 // export const getCustomList = (payload) => api.post(`/customList`)
 
+const data = [{
+    name: "personal",
+    items: [{
+        name: "car", status: false
+        }, {
+        name: "iPad", status: false
+        }]
+    }, {
+    name: "work",
+    items: [{
+        name: "promotion", status: false
+        }, {
+        name: "salary", status: false
+        }]
+    }]
 
 export const getTodos = async(customList)=>{
-    let changeableUrl = url;
-    if (customList){
-        changeableUrl = `${url}/${customList}`
-    }
+    // let changeableUrl = url;
+    // if (customList){
+    //     changeableUrl = `${url}/${customList}`
+    // }
     try{
         // const {data} = await api.get('/')
-        const {data} = await axios.get(changeableUrl)
+        // const {data} = await axios.get(changeableUrl)
         // console.log(data)
-        return data
+        return data;
     }
     catch (error) {
-    throw new Error(error)
+        // throw new Error(error)
     }
 }
 

@@ -2,10 +2,10 @@ import React from 'react'
 
 
 const ListData = ({titleInfo})=> {
-    const customIndividual = titleInfo.map((item)=>{
+    const customIndividual = titleInfo.map((item, key)=>{
         return (
-            <div className="card" key={item._id}>
-                <p>{item.name}</p>
+            <div className="card" key={key}>
+                <span>{item.name}</span>
                 <button>Delete</button>
             </div>
         )
